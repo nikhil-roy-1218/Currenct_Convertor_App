@@ -1,5 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+// create a varibale that stores the converted currency value.
+// Create a function that multiplies the value given by the textfeild with 81
+// Store the value in the variable the we created
+// Display the variable
 
 class CurrencyConverterMaterialPage extends StatefulWidget {
   const CurrencyConverterMaterialPage({super.key});
@@ -11,8 +15,11 @@ class CurrencyConverterMaterialPage extends StatefulWidget {
 
 class _CurrencyConverterMaterialPageState
     extends State<CurrencyConverterMaterialPage> {
+  double result = 0;
+  final TextEditingController textEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    print("Rebuild fn");
     final border = OutlineInputBorder(
       borderSide: BorderSide(
         // color: Colors.black,
@@ -41,8 +48,8 @@ class _CurrencyConverterMaterialPageState
             padding: EdgeInsets.all(10),
             margin: EdgeInsets.all(2),
             // color: Colors.amber,
-            child: const Text(
-              "0",
+            child: Text(
+              result.toString(),
               style: TextStyle(
                 fontSize: 55,
                 color: Colors.black,
@@ -54,6 +61,7 @@ class _CurrencyConverterMaterialPageState
             padding: const EdgeInsets.all(8.0),
             // color: Colors.red,
             child: TextField(
+              controller: textEditingController,
               style: TextStyle(color: Colors.black),
               decoration: InputDecoration(
                 hintText: "Please Enter Amount in USD ...",
@@ -74,9 +82,9 @@ class _CurrencyConverterMaterialPageState
             padding: const EdgeInsets.all(25),
             child: ElevatedButton(
               onPressed: () {
-                if (kDebugMode) {
-                  debugPrint("Button Click");
-                }
+                setState(() {
+                  result = double.parse(textEditingController.text) * 85.35;
+                });
               },
               style: ButtonStyle(
                 backgroundColor: const WidgetStatePropertyAll(Colors.black),
@@ -87,15 +95,25 @@ class _CurrencyConverterMaterialPageState
               child: Text("Convert it", style: TextStyle(fontSize: 18)),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(25),
+            child: ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  textEditingController.clear();
+                });
+              },
+              style: ButtonStyle(
+                backgroundColor: const WidgetStatePropertyAll(Colors.black),
+                foregroundColor: WidgetStatePropertyAll(Colors.white),
+                fixedSize: WidgetStatePropertyAll(Size(400, 50)),
+              ),
+
+              child: Text("Reset", style: TextStyle(fontSize: 18)),
+            ),
+          ),
         ],
       ),
     );
   }
 }
-
-
-// create a varibale that stores the converted currency value.
-// Create a function that multiplies the value given by the textfeild with 81
-// Store the value in the variable the we created
-// Display the variable
-
