@@ -1,32 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/appbar.dart';
 
 void main() {
-  runApp(const Myapp());
+  runApp(const MyApp());
 }
 
-class Myapp extends StatelessWidget {
-  const Myapp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Learning Flutter",
-      theme: ThemeData(primarySwatch: Colors.amber),
+      title: "Currency Converter",
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 22, 134, 226),
-          title: Center(
-            child: Text(
-              "Learning Flutter",
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ),
-      ),
+      home: CurrencyConverterMaterialPage(),
     );
   }
 }
